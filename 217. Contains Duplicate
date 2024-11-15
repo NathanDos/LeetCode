@@ -1,0 +1,26 @@
+#include <unordered_map>
+#include <unordered_set>
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        /*By Sort algorithm ~16ms*/
+        sort(nums.begin(), nums.end());
+        for(size_t i = 1; i < nums.size(); i++ )
+        if(nums[i] == nums[i-1]) return true;
+        return false;
+
+
+        /*Unordered Map Version ~ 32ms*/
+        // unordered_map<int,int> dup;
+        // for(auto i : nums){
+        //     dup[i]++;
+        //     if(dup[i] > 1){
+        //         return true;
+        //     }
+        // }
+        // return false;
+
+        /*Unordered Set ~42ms*/
+        // return unordered_set(nums.begin(), nums.end()).size() < nums.size();
+    }
+};
