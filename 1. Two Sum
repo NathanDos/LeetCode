@@ -1,0 +1,46 @@
+#include <algorithm>
+#include <vector>
+#include<unordered_map>
+
+class Solution {
+public:
+    std::vector<int> twoSum(std::vector<int>& nums, int target) {
+    
+    /*Third Try: Using an unordered map to store the values IN ORDER and use find algorithm to get iterator pointing to the second value towards target ~6ms,14.10MB*/
+    unordered_map<int,int> uM;
+    for(int i = 0; i < nums.size(); ++i){
+        int diff = target - nums[i];
+        if(uM.find(diff) != uM.end()){
+            return {uM[diff], i};
+        }
+        uM[nums[i]] = i;
+    }
+    return {0,0};
+
+    /*Second Try: Double for loop, very simple ~49ms,12.90MB*/
+    // vector<int> returnVec= {0, 0};
+    //     for (int i = 0; i < nums.size(); i++) {
+    //         for (int j = i + 1; j < nums.size(); j++) {
+    //             if (nums[i] + nums[j] == target) {
+    //                 returnVec[0] = i;
+    //                 returnVec[1] = j;
+    //                 return returnVec;
+    //             }
+    //         }
+    //     }
+    //     return {};
+
+    /*First Idea: Take each number and find the iterator for other value adding to target and use them to populate the return vector ~83ms,12.78MB*/
+    // std::vector<int>::iterator it{nums.end()};  //Same as writing nullptr
+    // std::vector<int> returnVec(2, 0);
+    // for (size_t i = 0; i < nums.size(); ++i) {
+    //     it = std::find(nums.begin(), nums.end(), (target - nums[i]));
+    //     if (it != nums.end() && static_cast<int>(it - nums.begin()) != static_cast<int>(i)) { 
+    //         returnVec[0] = static_cast<int>(i);
+    //         returnVec[1] = static_cast<int>(it - nums.begin());
+    //         break;
+    //     }
+    // }
+    // return returnVec;
+    };  
+};
