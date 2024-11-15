@@ -1,0 +1,27 @@
+#include<map>
+#include<unordered_map>
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+
+        /*Second Try: Unordered Maps ~4ms*/
+        if(s.size() != t.size()) return false;
+        unordered_map<char,int> anagramChars;
+        unordered_map<char,int> nagaramChars;
+        for(size_t i = 0; i< s.length(); i++){
+        anagramChars[s[i]]++;
+        nagaramChars[t[i]]++;
+        }
+        return anagramChars == nagaramChars;
+        
+        /*First Try: Fill two maps and compare ~8ms*/
+        // if(s.size() != t.size()) return false;
+        // map<char,int> anagramChars;
+        // map<char,int> nagaramChars;
+        // for(auto i : s)
+        // anagramChars[i]++;
+        // for(auto j : t)
+        // nagaramChars[j]++;
+        // return anagramChars == nagaramChars;
+    }
+};
